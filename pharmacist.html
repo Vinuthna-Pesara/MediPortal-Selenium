@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Pharmacist Portal</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            align-items: center;
+        }
+        .container {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 480px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px 14px;
+            margin-bottom: 18px;
+            border: 1.5px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #007BFF;
+            box-shadow: 0 0 6px #cce4ff;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #ordersList, #approved, #dispenseResult {
+            margin-top: 15px;
+            padding: 10px 15px;
+            border-radius: 6px;
+            background: #eef4ff;
+            color: #333;
+            font-weight: 600;
+            min-height: 30px;
+            user-select: none;
+        }
+        #approved {
+            background: #ffecec;
+            color: #b90000;
+        }
+        #approved.approved {
+            background: #d4edda;
+            color: #155724;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Pharmacist Portal</h2>
+        <form id="pharmacistForm" onsubmit="event.preventDefault();">
+            <label for="idno">ID:</label>
+            <input type="number" id="idno" required />
+
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" required />
+
+            <label for="medicine">Medicine:</label>
+            <input type="text" id="medicine" required />
+
+            <button type="button" id="viewOrdersBtn" onclick="viewOrder()">View Orders</button>
+            <div id="ordersList"></div>
+
+            <button type="button" id="approveBtn" onclick="approve()">Dispense</button>
+            <div id="approved">Not approved</div>
+
+            <button type="button" id="sendToDoctorBtn" onclick="agree()">Send to Doctor</button>
+            <div id="dispenseResult"></div>
+        </form>
+    </div>
+
+    <script>
+        function viewOrder() {
+            document.getElementById("ordersList").innerHTML = "Pid: 123 &nbsp; Pname: Vinuthna";
+        }
+
+        function approve() {
+            const status = document.getElementById("approved").innerText;
+            const result = document.getElementById("dispenseResult");
+
+            if (status === "Not approved") {
+                result.innerText = "Cannot dispense. Not approved.";
+            } else {
+                result.innerText = "Medicines dispensed.";
+            }
+        }
+
+        function agree() {
+            document.getElementById("approved").innerText = "Approved";
+            document.getElementById("dispenseResult").innerText = "";
+        }
+    </script>
+</body>
+</html>

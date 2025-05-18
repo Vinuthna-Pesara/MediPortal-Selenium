@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Doctor Portal</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            align-items: center;
+        }
+        .container {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            max-width: 480px;
+            width: 100%;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 10px 14px;
+            margin-bottom: 18px;
+            border: 1.5px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #007BFF;
+            box-shadow: 0 0 6px #cce4ff;
+        }
+        button, a.button-link {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        button:hover,
+        a.button-link:hover {
+            background-color: #0056b3;
+        }
+        #ordersList, #approved {
+            margin-top: 15px;
+            padding: 10px 15px;
+            border-radius: 6px;
+            background: #eef4ff;
+            color: #333;
+            font-weight: 600;
+            min-height: 30px;
+            user-select: none;
+        }
+        #approved {
+            background: #ffecec;
+            color: #b90000;
+        }
+        #approved.approved {
+            background: #d4edda;
+            color: #155724;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Doctor Portal</h2>
+        <form id="doctorForm" onsubmit="event.preventDefault();">
+            <label for="idno">ID:</label>
+            <input type="number" id="idno" required />
+
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" required />
+
+            <label for="prescription">Prescription:</label>
+            <textarea id="prescription" rows="3" placeholder="Write prescription here..."></textarea>
+
+            <button id="viewOrdersBtn" type="button" onclick="viewOrder()">View Orders</button>
+            <div id="ordersList"></div>
+
+            <button id="approveBtn" type="button" onclick="approve()">Approve</button>
+            <div id="approved">Not approved</div>
+
+            <a href="pharmacist.html" style="display: inline-block; padding: 10px 20px; background-color: #ddd; text-decoration: none; color: black; border-radius: 4px;">Send to Pharmacist</a>
+        </form>
+    </div>
+
+    <script>
+        function viewOrder() {
+            const place = document.getElementById("ordersList");
+            place.innerHTML = "Pid: 123  Pname: Vinuthna";
+        }
+
+        function approve() {
+            const approvedDiv = document.getElementById("approved");
+            approvedDiv.innerText = approvedDiv.innerText === "Not approved" ? "Approved" : "Not approved";
+        }
+    </script>
+</body>
+</html>
